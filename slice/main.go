@@ -40,7 +40,7 @@ func main() {
 	s4[0] = 5               // [5, 0, 0], len = 3, cap = 5
 	s4[2] = 10              // [5, 0, 10], len = 3, cap = 5
 
-	s4[3] = 20 // runtime error: index out of range [3] with length 3.
+	// s4[3] = 20 // runtime error: index out of range [3] with length 3.
 
 	// 5. nil slice
 	// No memory allocated for the nil slice
