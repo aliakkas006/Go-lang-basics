@@ -265,6 +265,108 @@ Structs are the backbone of data organization in Go. They provide:
 
 ---
 
+## 📦Receiver Function
+
+A receiver function is a function that binds to a type (usually a struct) and can be called like a method.
+
+### 🧱 Basic Syntax
+
+```go
+func (receiver ReceiverType) MethodName(args) ReturnType {
+    // Function body
+}
+```
+
+### ✅ Example
+
+```go
+package main
+import "fmt"
+
+type User struct {
+	Name  string // Property
+	Age   int
+	Email string
+}
+
+// Receiver Function (receive only User type's variable)
+func (user User) printDetails() {
+	fmt.Println("Name: ", user.Name)
+	fmt.Println("Age: ", user.Age)
+	fmt.Println("Email: ", user.Email)
+}
+
+func (user User) call(x int) {
+	fmt.Println("Name: ", user.Name)
+	fmt.Println("Age: ", user.Age)
+
+	fmt.Println("X: ", x)
+}
+
+func main() {
+	user := User{
+		Name:  "Ali",
+		Age:   24,
+		Email: "ali@gmail.com",
+	}
+
+	user.printDetails()
+
+	user_2 := User{
+		Name: "Ali Akkas",
+		Age:  24,
+	}
+
+	user_2.call(30)
+}
+```
+
+```go
+/*
+	2 phases:
+		1. Compilation phase (compile time)
+		2. Execution phase (run time)
+
+
+	************  Compilation Phase (compile time)  ***************
+
+		### Code Segment (readonly => (const and function)) ###
+			- User = type User struct {...}
+			- printDetails = func () {...}  // Bind with User type variable
+            - call = func (int) {...}   // // Bind with User type variable
+			- main
+
+
+	************  Execution Phase (run time)  ***************
+
+
+	go build main.go -> compile it -> main
+	./main
+*/
+
+```
+
+### ✅ Pointer Receiver
+
+- func (t \*Type)
+- Works on the original struct (modifiable).
+
+```go
+func (usr *User) Birthday() {
+    usr.Age++ // Modifies the original User data
+}
+
+user := User{"Akkas", 24}
+person.Birthday()
+fmt.Println(person.Age) // 25 (changed)
+```
+
+Receiver functions are Go’s way of attaching behavior to data without full-blown OOP. They enable:
+
+> ✅ Clean, object-like APIs
+> ✅ Polymorphism via interfaces
+> ✅ Explicit control over mutability
+
 # Slice
 
 > Slices are one of the most powerful and commonly used data structures in Go 🧠  
