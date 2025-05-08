@@ -22,14 +22,14 @@ func outer() func() {
 
 func call() {
 	incr_1 := outer()
-	incr_1()
-	incr_1()
+	incr_1() // 610
+	incr_1() // 720
 
 	fmt.Println("---- Second incremetnt ------")
 
 	incr_2 := outer()
-	incr_2()
-	incr_2()
+	incr_2()	// 610
+	incr_2()	// 720
 }
 
 func main(){
