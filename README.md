@@ -101,7 +101,7 @@ func init(){
 
 ---
 
-### 🔒  Encapsulation (private variables)
+### 🔒 Encapsulation (private variables)
 
 ```go
 func newBankAccount(initialBalance float64) (func(float64), func() float64) {
@@ -124,7 +124,144 @@ func main() {
     fmt.Println(getBalance()) // 150.0
 }
 ```
+
 - balance is hidden from outside access.
+
+---
+
+# Struct
+
+> Structs are one of the most important features in Go for organizing and managing data.
+> A struct is a **composite data type** that groups together fields (variables) under a single name.
+
+### 🧱 Basic syntax
+
+```go
+type StructName struct {
+	Field1 datatype1
+	Field2 datatype2
+	Field3 datatype3
+}
+```
+
+```go
+type Person struct {
+    Name string
+    Age  int
+    City string
+}
+```
+
+## 🛠️ Creating Struct instances
+
+### 1️⃣ Field Initialization
+
+```go
+p1 := Person{
+    Name: "Akkas",
+    Age:  24,
+    City: "Dhaka",
+}
+```
+
+### 2️⃣ Positional Initialization (Order matters!)
+
+```go
+p2 := Person{"Anis", 25, "Chittigong"}  // Must follow struct field order
+```
+
+### 3️⃣ Zero-value Initialization
+
+```go
+var p3 Person 	// All fields get their zero values
+fmt.Println(p3) // Output: { 0 }
+```
+
+### 4️⃣ Using **new()** (Returns a Pointer)
+
+```go
+p4 := new(Person) // p4 is a *Person (pointer)
+p4.Name = "Ali"
+```
+
+---
+
+## ✅ Accessing Struct Fields
+
+Use the **.** (dot) operator to access fields.
+
+```go
+fmt.Println(p1.Name) // "Akkas"
+p1.Age = 30          // Modify a field
+```
+
+## ✅ Nested Structs
+
+Example: Address inside Person
+
+```go
+type Address struct {
+    Street  string
+    Country string
+}
+
+type Person struct {
+    Name    string
+    Age     int
+    Address Address // Nested struct
+}
+
+// Initialization
+p := Person{
+    Name: "Ali Akkas",
+    Age:  24,
+    Address: Address{
+        Street:  "123 Jatrabari",
+        Country: "Bangladesh",
+    },
+}
+
+// Accessing nested fields
+fmt.Println(p.Address.Country) // "Bangladesh"
+```
+
+## ✅ Anonymous Structs
+
+- One-time use.
+- If we need a struct for a short-lived purpose, we can define it inline.
+
+```go
+temp := struct {
+    ID    int
+    Value string
+}{
+    ID:    1,
+    Value: "test_value",
+}
+
+fmt.Println(temp.Value)  // "test_value"
+```
+
+## ✅ Comparing Structs
+
+- Structs can be compared **only if all fields are comparable**.
+
+```go
+p1 := Person{"Akkas", 24, "Bangladesh"}
+p2 := Person{"Akkas", 24, "Bangladesh"}
+
+fmt.Println(p1 == p2) // true
+```
+
+---
+
+### 💡Final Thoughts
+
+Structs are the backbone of data organization in Go. They provide:
+
+- ✅ **Type safety**
+- ✅ **Flexibility** (composition over inheritance)
+- ✅ **Clean code** (group related data)
 
 ---
 
