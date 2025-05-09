@@ -277,7 +277,7 @@ func (receiver ReceiverType) MethodName(args) ReturnType {
 }
 ```
 
-### ✅ Example
+### 🧪 Example
 
 ```go
 package main
@@ -366,6 +366,94 @@ Receiver functions are Go’s way of attaching behavior to data without full-blo
 > ✅ Clean, object-like APIs
 > ✅ Polymorphism via interfaces
 > ✅ Explicit control over mutability
+
+---
+
+# Array
+
+> Arrays in Go are fixed-size, homogeneous (same type) data structures that store elements in contiguous memory.
+> Unlike slices, arrays have a static length that cannot be changed after creation.
+
+## 🔢 Basic Syntax
+
+```go
+var arrayName [length]Type
+```
+
+## 🧩 Array Declaration & Initialization
+
+### 1️⃣ Zero-initialized Array
+
+```go
+var arr [3]int	// [0, 0, 0]
+```
+
+### 2️⃣ Pre-filled Array
+
+```go
+arr := [3]{1, 2, 3}
+```
+
+### 3️⃣ Implicit Array (**...**)
+
+```go
+arr := [...]{1, 2, 3, 4, 5}		// length = 5
+```
+
+## ✅ Working with Arrays
+
+- ### Accessing Elements
+
+```go
+arr := [3]int{1, 2, 3}
+fmt.Println(arr[1])  // 2
+```
+
+- ### Modifying Elements
+
+```go
+arr[1] = 20		// [1, 20, 3]
+```
+
+- ### Iteration
+
+```go
+// Using for-loop
+for i := 0; i < len(arr); i++ {
+    fmt.Println(arr[i])
+}
+
+// Using range
+for index, value := range arr {
+    fmt.Printf("%d: %d\n", index, value)
+}
+```
+
+- ### Multidimensional Array
+
+```go
+ matrix := [2][3]int{
+    {1, 2, 3},
+    {4, 5, 6},
+}
+
+fmt.Println(matrix[1][2])  // 6
+```
+
+- ### Matrix Operation
+
+```go
+ func addMatrices(a, b [2][2]int) [2][2]int {
+    var result [2][2]int
+    for i := range a {
+        for j := range a[i] {
+            result[i][j] = a[i][j] + b[i][j]
+        }
+    }
+    return result
+}
+
+```
 
 # Slice
 
