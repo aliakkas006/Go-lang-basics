@@ -1,4 +1,4 @@
-# 🚀 Go Lang Basics
+# 📘Go Lang Basics
 
 Welcome to the **Go Basics Repository** – a concise and practical guide for learning the foundational concepts of the Go programming language.
 
@@ -6,11 +6,184 @@ This repository includes clear examples and explanations for the following core 
 
 ## 📚 Index
 
+- [Scope](#-scope)
 - [Closure](#closure)
 - [Struct](#struct)
 - [Array](#array)
 - [Pointer](#pointer)
 - [Slice](#slice)
+
+---
+
+# 🧭 Scope
+
+Scope defines the **region of code** where a **variable**, **function**, or **other identifier** can be **accessed**.
+
+> It determines the visibility and lifetime of program elements, preventing naming conflicts and managing memory efficiently.
+
+There are **four primary scopes** in Go:
+
+1. **Block Scope**
+2. **Function Scope**
+3. **Package Scope**
+4. **File Scope**
+
+## 1️⃣ Block Scope
+
+- Variables declared inside **`{}`** blocks are only visible within that block
+- Includes control structures (**`if`**, **`for`**, **`switch`**), **`functions`**, and **`explicit blocks`**
+
+```go
+func main() {
+    x := 10 	// Outer scope variable
+
+    {
+        y := 30 	// Inner scope variable
+        fmt.Println(x, y) 	// Valid (10 30)
+    }
+
+    fmt.Println(y) 	// Compile error: undefined:y
+}
+```
+
+## 2️⃣ Function Scope
+
+- Variables declared inside functions are visible only within that function.
+- Includes parameters and return values.
+
+```go
+func calculate(a, b int) (result int) {		// a, b, and result are function-scoped
+    temp := a * b 	// Also function-scoped
+    return temp + 10
+}
+
+func main() {
+	result := calculate(10, 20)
+	fmt.Println(result) // 210
+    fmt.Println(temp) // Error: undefined:temp
+}
+```
+
+> ⚠️ These variables are re-created every time the function is called.
+
+## 3️⃣ Package Scope
+
+- Variables declared **outside of functions** are accessible **anywhere in the same package**.
+- Can be exported (visible to other packages) if capitalized.
+
+```go
+package main
+
+var msg = "I'm accessible everywhere in main"
+
+func show() {
+    fmt.Println(msg) // Works
+}
+
+func main() {
+    fmt.Println(msg) // Works
+}
+```
+
+> ✅ Package-scoped variables **persist for the lifetime** of the program.
+> ⚠️ Can lead to **race conditions** in concurrent code.
+
+## 4️⃣ File Scope
+
+- Imported packages are file-scoped.
+
+```go
+package main
+
+import (
+    "fmt"  // Only visible in this file
+    m "math"  // File-scoped alias
+)
+
+var _ = secretHelper() // File-scoped initialization
+
+func main() {
+    fmt.Println(m.Sqrt(4))
+}
+```
+
+## 🔄 Variable Shadowing
+
+- When an **inner scope variable** declares **same name** as **outer scope variable**.
+
+```go
+x := "Outer-scope variable"
+{
+    x := "Inner-scope variable" 	// Shadows outer scope variable x
+    fmt.Println(x) 	// Inner-scope variable
+}
+fmt.Println(x) 	// Outer-scope variable
+```
+
+> ⚠️ Shadowing can cause bugs — avoid reusing variable names in nested scopes unless intentional.
+
+## 🧪 Example: Demonstrating All Scopes
+
+```go
+package main
+
+import (
+    "fmt"  // Only visible in this file
+    m "math"  // File-scoped alias
+)
+
+var global = "package-scope" 	// package scope
+
+func main() {
+	local := "function-scope"
+
+	if true {
+		block := "block-scope"
+
+		fmt.Println(global)		// ✅ Can access global variable
+		fmt.Println(local)		// ✅ Can access local variable
+		fmt.Println(block)		// ✅ Can access block variable
+	}
+
+	fmt.Println(block)  // ❌ Not accessible here
+
+	val := m.Sqrt(4) 	// File-scope
+	fmt.Println(val)
+}
+```
+
+## 🧱 Lexical Scope
+
+> Lexical scope (also called static scope) is a fundamental concept in Go that determines how and where variables, functions, and other identifiers are accessible based on their physical location in the source code. Unlike dynamic scope (which determines visibility at runtime), lexical scope is determined at compile time.
+
+```go
+func outerFunc() func() int {
+    count := 0 		// Lexically-scoped to outerFunc
+
+    return func() int {
+        count++ 		// The inner function "closes over" count
+        return count
+    }
+}
+
+func main() {
+    counter := outerFunc()
+    fmt.Println(counter()) 		// 1
+    fmt.Println(counter()) 		// 2 (count persists)
+}
+```
+
+- The inner function maintains a reference to count (not a copy).
+- This is possible because Go uses **lexical scoping**.
+
+## 📊 Lexical vs Dynamic Scope Comparison
+
+| Feature           | Lexical Scope (Go)      | Dynamic Scope (e.g., Bash) |
+| ----------------- | ----------------------- | -------------------------- |
+| 🔍 Resolution     | At compile time         | At runtime                 |
+| 🧭 Access Rules   | Based on code structure | Based on call stack        |
+| ⚡ Performance    | Faster (resolved early) | Slower (runtime lookup)    |
+| ✅ Predictability | More predictable        | Less predictable           |
 
 ---
 
