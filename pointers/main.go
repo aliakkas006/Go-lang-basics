@@ -15,9 +15,9 @@ func main() {
 
 	*ptr = 20 // Re-assign the value of x at the address of ptr | 20
 
-	fmt.Println("Address of x = ", ptr)
-	fmt.Println("Value at address ptr = ", val)
-	fmt.Println("Final Value of x = ", x)
+	fmt.Println("Address of x = ", ptr)	// 0xc00000a0e8
+	fmt.Println("Value at address ptr = ", val)	// 10
+	fmt.Println("Final Value of x = ", x)	// 20
 
 	// Array print with the help of pointers
 	arr := [5]int{1, 2, 3, 4, 5}

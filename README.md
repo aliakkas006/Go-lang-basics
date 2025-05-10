@@ -452,7 +452,82 @@ fmt.Println(matrix[1][2])  // 6
     }
     return result
 }
+```
 
+---
+
+# Pointer
+
+Pointers are a fundamental concept in Go that allow us to **directly manipulate memory addresses**.
+They are essential for:
+
+- **Efficiently passing large data** (avoid copying)
+- **Modifying variables in functions**
+- **Working with data structures** (linked lists, trees)
+- **Interfacing with system-level code**
+
+## 🔍 Pointer Terminology
+
+| Concept      | Description                                   |
+| ------------ | --------------------------------------------- |
+| `&` operator | **Address-of** (gets the address of a value)  |
+| `*` operator | **Dereference** (gets the value at a pointer) |
+| `*Type`      | **Pointer to a given type**                   |
+
+## 🎯Pointer Syntax
+
+A pointer is a variable that stores the **memory address** of another variable.
+
+```go
+var ptr *Type  // Declares a pointer to a Type
+```
+
+```go
+package main
+import "fmt"
+
+func print(numbers *[5]int) { // pointer to an array of 5 integers
+	fmt.Println(numbers) // &[1 2 3 4 5]
+}
+
+func main() {
+	x := 10 	// Only value hold | 10
+	ptr := &x 	// Address of x | 0xc00000a0e8 | 824633759720
+	val := *ptr // Value at address ptr | 10
+	*ptr = 20 	// Re-assign the value of x at the address of ptr | 20
+
+	fmt.Println("Address of x = ", ptr)		// 0xc00000a0e8
+	fmt.Println("Value at address ptr = ", val)		// 10
+	fmt.Println("Final Value of x = ", x)	// 20
+
+	// Array print with the help of pointers
+	arr := [5]int{1, 2, 3, 4, 5}
+
+	print(&arr) // pass by reference
+}
+```
+
+## 🧩 Pointer Mechanics:
+
+- ### Zero Value (**nil**)
+
+```go
+var p *int
+fmt.Println(p == nil)  // true
+```
+
+```go
+p := new(int)  // *int pointing to 0
+*p = 42        // Store 42 at the address
+```
+
+- ### Linked Data Structures
+
+```go
+type Node struct {
+	Val int
+	Next *Node	// Pointer to the next node
+}
 ```
 
 # Slice
