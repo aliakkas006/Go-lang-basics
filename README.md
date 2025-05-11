@@ -13,6 +13,7 @@ This repository includes clear examples and explanations for the following core 
 - [Array](#array)
 - [Pointer](#pointer)
 - [Slice](#slice)
+- [Map](#️-maps)
 
 ---
 
@@ -1029,3 +1030,158 @@ func main() {
 - The variadic parameter is implemented as a slice under the hood.
 - The compiler generates code to automatically create this slice.
 - Calling with no variadic args creates a nil slice: **numbers := []int**
+
+---
+
+# 🗺️ Maps
+
+A **map** is an **unordered collection** of **key-value pairs** where:
+
+- Each key is unique
+- Values are accessed via keys
+- Keys must be comparable (`==` operator)
+
+## ✅ Basic Syntax
+
+```go
+map[KeyType]ValueType
+```
+
+## 🛠️ Declaring Maps
+
+- ### Using `make()` function
+
+```go
+data := make(map[string]int)
+```
+
+- ### Using Map Literals
+
+```go
+data := map[string]int{
+	"ali": 24,
+	"anis": 25,
+	"rakib": 27,
+}
+```
+
+- ### Empty Map
+
+```go
+m := make(map[string]int)		// Initialized but empty
+fmt.Println(m == nil)  			// false
+```
+
+- ### Nil Map
+
+```go
+var countries map[string]string
+fmt.Println(countries == nil)    	// true
+```
+
+## 🔍 Working with Map
+
+- ### Adding/Updating:
+
+```go
+data["arif"] = 25
+data["ali"] = 30
+```
+
+- ### Accessing
+
+```go
+myAge := data["ali"]	// 30
+```
+
+- ### Deleting
+
+```go
+delete(data, "ali")
+```
+
+- ### Check Length
+
+```go
+totalData := len(data)
+```
+
+- ### Check If Key exists
+
+```go
+age, exists := data["arif"]
+if exists {
+	fmt.Println("Arif's age is: ", age)
+} else {
+	fmt.Println("Arif's data is not found!")
+}
+```
+
+- ### Shorter version
+
+```go
+if age, exists := data["arif"]; exists {
+	fmt.Println(age)
+}
+```
+
+- ### Reference Type Behavior
+
+```go
+original := map[string]int{"x": 1}
+ref := original
+ref["x"] = 2
+
+fmt.Println(original["x"]) // 2 (changed)
+```
+
+- ### Iteration over Map
+
+```go
+for key, value := range data {
+	fmt.Println("%s: %s\n", key, value)
+}
+
+// Values only
+for _, value := range colors {
+    fmt.Println(value)
+}
+```
+
+- ### Nested Maps
+
+```go
+students := map[string]map[string]int{
+		"Akkas": {
+			"Math":    90,
+			"Physics": 85,
+		},
+		"Zidan": {
+			"Math":      90,
+			"Chemistry": 87,
+		},
+	}
+
+fmt.Println(students["Akkas"]["Math"])  	// 90
+```
+
+## 🧪 Practical Example (Word Frequency Counter)
+
+```go
+func wordCount(str string) map[string]int {
+	words := strings.Fields(str)
+	counts := make(map[string]int)
+
+	for _, word := range words {
+		counts[word]++
+	}
+
+	return counts
+}
+```
+
+## 🧠 Map Properties
+
+- Keys must be of a type that supports `==` comparison (e.g., string, int).
+- Maps are **reference types** (passed by reference)
+- Not safe for concurrent use (use `sync.Map` for concurrency)
