@@ -6,12 +6,114 @@ This repository includes clear examples and explanations for the following core 
 
 ## 📚 Index
 
+- [Variables and Data Types](#-variables-and-data-types)
 - [Scope](#-scope)
 - [Closure](#closure)
 - [Struct](#struct)
 - [Array](#array)
 - [Pointer](#pointer)
 - [Slice](#slice)
+
+---
+
+# 📦 Variables and Data Types
+
+Go is a statically typed, compiled language with a rich set of built-in data types and flexible variable declaration syntax.
+
+## 📘 Declaring Variables in Go
+
+- ### Explicit Declaration with `var` keyword
+
+```go
+var name string       // Declaration without initialization (default: "")
+var age int = 24      // Declaration with initialization
+var height = 165.5    // Type inference (float64)
+```
+
+- ### Short Declaration
+
+```go
+name := "Ali Akkas"       // string
+age := 24             // int
+height := 165.5        // float64
+active := true        // bool
+```
+
+- ### Multiple Variable Declaration 🧩
+
+```go
+var (
+	name = "ali"
+	age  = 24
+)
+
+x, y := 10, 20
+```
+
+### 🧊 Zero Values
+
+| Type      | Zero Value   |
+| --------- | ------------ |
+| int       | `0`          |
+| float64   | `0.0`        |
+| string    | `""` (empty) |
+| bool      | `false`      |
+| pointer   | `nil`        |
+| slice/map | `nil`        |
+
+---
+
+## 🧬 Data Types in Go
+
+> Go is statically typed — each variable must have a defined type (either explicitly or inferred).
+
+### 🔢 Basic Types
+
+| Type                                            | Description     | Example                     |
+| ----------------------------------------------- | --------------- | --------------------------- |
+| `int`, `int8`, `int16`, `int32` `int64`, `uint` | Integer types   | `var age int = 30`          |
+| `float32`, `float64`                            | Floating points | `var price float64 = 9.99`  |
+| `string`                                        | Text (UTF-8)    | `var name string = "Go"`    |
+| `bool`                                          | Boolean values  | `var valid bool = true`     |
+| `complex64`, `complex128`                       | Complex numbers | `var c complex128 = 1 + 2i` |
+
+### 🏗️ Composite Types
+
+| Type        | Description                        | Example                                       |
+| ----------- | ---------------------------------- | --------------------------------------------- |
+| `array`     | Fixed-size sequence of elements    | `arr := [3]int{1, 2, 3}`                      |
+| `slice`     | Dynamic-length version of array    | `s := []int{1, 2, 3}`                         |
+| `map`       | Key-value store                    | `m := map[string]int{"a": 1}`                 |
+| `struct`    | Collection of fields (custom type) | `type Person struct { Name string; Age int }` |
+| `pointer`   | Holds memory address of a value    | `var p *int`                                  |
+| `interface` | Defines behavior (methods)         | `type Shape interface { Area() float64 }`     |
+| `channel`   | Communication between goroutines   | `ch := make(chan int)`                        |
+| `function`  | First-class functions              | `func add(a, b int) int { return a + b }`     |
+
+### 🧪 Type Conversion
+
+- Go is **strictly typed** — implicit conversion is not allowed.
+- Use explicit conversion with the type name.
+
+```go
+var i int = 42
+var f float64 = float64(i)
+var u uint = uint(f)
+
+// String to bytes and back
+str := "hello"
+bytes := []byte(str)
+newStr := string(bytes)
+```
+
+### 🧠 Constants
+
+- Use `const` to declare immutable values
+
+```go
+const Pi = 3.1415
+const Lang = "Go"
+```
 
 ---
 
@@ -74,10 +176,15 @@ func main() {
 ```go
 package main
 
-var msg = "I'm accessible everywhere in main"
+var msg = "Package-scoped variable" // Not exported
+var Msg = "Package-scoped variable" // Exported
 
-func show() {
+func show() {	// Not Exported
     fmt.Println(msg) // Works
+}
+
+func Add(x, y int) int {	// Exported
+	return x + y
 }
 
 func main() {
