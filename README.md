@@ -7,6 +7,7 @@ This repository includes clear examples and explanations for the following core 
 ## 📚 Index
 
 - [Variables and Data Types](#-variables-and-data-types)
+- [Control Statements](#-control-statements)
 - [Scope](#-scope)
 - [Closure](#closure)
 - [Struct](#struct)
@@ -115,6 +116,317 @@ newStr := string(bytes)
 const Pi = 3.1415
 const Lang = "Go"
 ```
+
+---
+
+# 🔁 Control Statements
+
+> Control statements are fundamental building blocks that determine the flow of program execution.
+> Control statements in Go allow us to manage the flow of execution within loops and functions.
+> They provide ways to **skip iterations**, **exit loops early**, **jump to labeled code**, and **return from functions**.
+
+## 1️⃣ Conditional Statements
+
+- ### `if` Statement
+
+```go
+if temp > 5 {
+
+	fmt.Println("Condition Satisfied!")
+}
+```
+
+- ### `if-else` Statement
+
+```go
+if marks > 40 {
+	fmt.Println("Passed!")
+} else {
+	fmt.Println("Failed!")
+}
+```
+
+- ### `if else-if` Ladder
+
+```go
+if marks >= 80 {
+	grade = "A+"
+} else if marks >= 70 {
+	grade = "A"
+} else if marks >= 60 {
+	grade = "B"
+} else if marks >= 40 {
+	grade = "C"
+} else {
+	grade = "F"
+}
+```
+
+- ### Short Statement
+
+Go allows a short statement to execute before the condition.
+
+```go
+if err := process(); err != nil {
+	fmt.Println(err)
+}
+```
+
+## 2️⃣ Switch Statement
+
+- ### Basic Switch
+
+```go
+day := "Friday"
+switch day {
+case "Monday":
+	fmt.Println("Start of the week")
+case "Friday":
+	fmt.Println("Weekend coming")
+default:
+	fmt.Println("Weekend!")
+}
+```
+
+- ### Switch with `no expression`
+
+```go
+temperature := 30
+switch {
+case temperature > 30:
+	fmt.Println("Hot weather")
+case temperature >= 25:
+	fmt.Println("Room temperature")
+default:
+	fmt.Println("Cold weather")
+	}
+```
+
+- ### `Fallthrough` within switch
+
+> In Go, the fallthrough keyword is used within a switch statement to force execution to continue to the next case, even if the next case expression does not match.
+
+```go
+switch num := 1; num {
+case 1:
+	fmt.Println("Case 1")
+	fallthrough
+case 2:
+	fmt.Println("Case 2")
+	fallthrough
+case 3:
+	fmt.Println("Case 3")
+}
+```
+
+```bash
+Output:
+Case 1
+Case 2
+Case 3
+```
+
+> ⚠️ fallthrough ignores the next case's condition and just executes its body.
+
+## 3️⃣ Loop Control Statements
+
+- ### Traditional For Loop
+
+Syntax:
+
+```go
+for init; condition; inc/dec {
+    ---
+}
+```
+
+Example:
+
+```go
+for i := 0; i < 5; i++ {
+	fmt.Println(i)
+}
+```
+
+- ### While-style Loop
+
+Syntax:
+
+```go
+for condition {
+	---
+}
+```
+
+Example:
+
+```go
+count := 5
+for count < 5 {
+	count++
+}
+```
+
+- ### Infinite Loop
+
+Syntax:
+
+```go
+for {
+	---
+	break	// needed to exit
+}
+```
+
+Example:
+
+```go
+for {
+    data := readData()
+    if data == nil {
+        break
+    }
+    process(data)
+}
+```
+
+- ### Range-based Loop
+
+Syntax:
+
+```go
+for index, value := range arr {
+    ---
+}
+```
+
+Example:
+
+```go
+// Loop on array/slice
+arr := []int{1, 2, 3, 4, 5}
+
+for i, val := range arr {
+	fmt.Printf("%d: %d\n", i, val)
+}
+```
+
+```go
+// Loop on map
+m := map[string]int{"x": 10, "y": 20, "z": 30}
+
+for key, val := range m {
+	fmt.Printf("%s: %d\n", key, val)
+}
+```
+
+```go
+// Loop on string
+str := "Akkas"
+
+for i, val := range str {
+	fmt.Printf("%d: %s\n", i, string(val))
+}
+```
+
+```go
+// Channel
+for item := range channel {
+    process(item)
+}
+```
+
+## 4️⃣ Control Flow Statements
+
+- ### `break`
+
+```go
+for i := 0; ; i++ {
+    if i == 5 {
+        break
+    }
+    fmt.Println(i)
+}
+```
+
+- ### `continue`
+
+```go
+for i := 0; i < 10; i++ {
+    if i%2 == 0 {
+        continue
+    }
+    fmt.Println(i)
+}
+```
+
+- ### 🏷️ Labels with break and continue
+
+```go
+outer:
+for i := 1; i <= 3; i++ {
+	for j := 1; j <= 3; j++ {
+		if i*j > 4 {
+			break outer
+		}
+		fmt.Println("i:", i, "j:", j)
+	}
+}
+```
+
+- ### 🧬 `goto`: Jump to Labeled Code
+
+```go
+func main() {
+	count := 0
+start:
+	if count < 3 {
+		fmt.Println("Count:", count)
+		count++
+		goto start
+	}
+}
+```
+
+- ### ⏹️ return: Exit from Function
+
+```go
+func greet(name string) {
+	if name == "" {
+		return
+	}
+}
+```
+
+## 🧠 Summary Table
+
+| Statement  | Description                                     |
+| ---------- | ----------------------------------------------- |
+| `break`    | Exits current loop or switch                    |
+| `continue` | Skips current iteration of loop                 |
+| `goto`     | Jumps to a labeled line of code                 |
+| `return`   | Exits the current function                      |
+| Label      | Named target for `goto`, `break`, or `continue` |
+
+## `defer` Statement
+
+```go
+func readFile() {
+    f, err := os.Open("file.txt")
+
+    if err != nil {
+        return
+    }
+
+    defer f.Close() // Executes when function exits
+
+    // Process file
+}
+```
+
+- Defers execute in LIFO order
+- Arguments are evaluated immediately
+- Useful for resource cleanup
 
 ---
 
