@@ -26,7 +26,7 @@ import "fmt"
 
 /**
 * Higher-order function (HOF or First-class function):
-	- A function that takes another function as an argument or returns a function as a result is called a higher-order function.
+	- A function that takes another function as a parameter or returns a function as a result or does both is called a higher-order function.
 	- In Go, functions are first-class citizens, which means that functions can be assigned to variables, passed as arguments to other functions, and returned from other functions.
 
 * Any of the following 3 conditions must be met for a function to be considered a higher-order function:
@@ -39,11 +39,11 @@ import "fmt"
 	- The callback function is called inside the other function.
 
 * First class citizen:
-	- Assigned data type to a variable 					
+	- Assigned data type to a variable
 */
 
 // Higher-order function
-func ProcessOperation (a, b int, cb func (x, y int)) func(x, y int) {
+func ProcessOperation(a, b int, cb func(x, y int)) func(x, y int) {
 	// Execute op func
 	cb(a, b)
 
@@ -51,7 +51,15 @@ func ProcessOperation (a, b int, cb func (x, y int)) func(x, y int) {
 	return div
 }
 
-func div (x, y int) {
+func div(x, y int) {
 	res := x / y
 	fmt.Println(res)
+}
+
+func getStats(nums []int) (sum int, count int) {
+	for _, n := range nums {
+		sum += n
+	}
+	count = len(nums)
+	return // automatically returns named values
 }

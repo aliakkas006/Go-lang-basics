@@ -8,6 +8,7 @@ This repository includes clear examples and explanations for the following core 
 
 - [Variables and Data Types](#-variables-and-data-types)
 - [Control Statements](#-control-statements)
+- [Functions](#-functions)
 - [Scope](#-scope)
 - [Closure](#closure)
 - [Struct](#struct)
@@ -427,6 +428,381 @@ func readFile() {
 - Defers execute in LIFO order
 - Arguments are evaluated immediately
 - Useful for resource cleanup
+
+---
+
+# 🔧 Functions
+
+- A function is a reusable block of code that performs a specific task.
+- A parameter is a variable named in the function definition.
+- An argument is the actual value that is passed to the function when it is called.
+
+## 🧱 Basic Function Syntax
+
+```go
+func functionName(param1 type1, param2 type2) returnType {
+	// --- function body
+	return value
+}
+```
+
+Example:
+
+```go
+func add(a int, b int) int {
+	return a + b
+}
+```
+
+## 🧾 Function with Multiple Return Values
+
+```go
+func divide(a, b int) (int, int) {
+	quotient := a / b
+	remainder := a % b
+	return quotient, remainder
+}
+```
+
+## 🎯 Named Return Values
+
+```go
+func getStats(nums []int) (sum int, count int) {
+	for _, n := range nums {
+		sum += n
+	}
+	count = len(nums)
+
+	return 		// Automatically returns named values - (sum, count)
+}
+```
+
+## 📦 Variadic Function
+
+- A variadic function is a function that accepts a **variable number of arguments** of the same data type.
+- use the ... (ellipsis) syntax before the type to define it.
+
+🧱 Basic Syntax:
+
+```go
+func funcName(params ...type) {
+	// --- function body
+	return
+}
+```
+
+✅ Example:
+
+```go
+func variadicFunc(numbers ...int) { // numbers := []int{1, 2, 3, 4, 5}
+	fmt.Println(numbers, len(numbers), cap(numbers)) // [1, 2, 3, 4, 5], len = 5, cap = 5
+}
+```
+
+```go
+func sum(nums ...int) int { // nums := []int{1, 2, 3}
+	total := 0
+	for _, num := range nums {
+		total += num
+	}
+	return total
+}
+```
+
+```go
+func main() {
+	variadicFunc(1, 2, 3, 4, 5)
+
+	summation := sum(1, 2, 3)      // 6
+	summation2 := sum(1, 2, 3, 4, 5) // 15
+}
+```
+
+## 📌 Summary of Variadic Function
+
+- When we call a variadic function, Go converts the **arguments into a slice**.
+- The variadic parameter is **implemented as a slice under the hood**.
+- The compiler generates code to automatically create this slice.
+- Calling with no variadic args creates a nil slice: **numbers := []int**
+
+---
+
+## 🔁 Recursive Functions
+
+- A function that calls itself.
+
+```go
+func factorial(n int) int {
+	if n == 0 {
+		return 1
+	}
+	return n * factorial(n-1)
+}
+```
+
+## 👤 Anonymous Functions
+
+- An anonymous function is a function that doesn’t have a name.
+- It is useful when you want to create an inline function.
+- We Can assign an anonymous function to a variable.
+
+```go
+add := func(x, y int) int {
+	return x + y
+}
+
+add(2, 3) 	// 5
+```
+
+## 📌 IIFE : Immediately Invoked Function Expression
+
+```go
+func(x, y int) {
+	sum := x + y
+	fmt.Println(sum)
+}()
+```
+
+## 🔒 Closures
+
+- Closure allows functions to **remember** and **access variables** from their surrounding **lexical scope**, even after the outer function has finished executing.
+
+```go
+func counter() func() int {
+	i := 0
+
+	op := func() int {
+		i++
+		return i
+	}
+
+	return op
+}
+
+next := counter()
+
+next()	// 1
+next()  // 2
+```
+
+## 🧼 Defer with Functions
+
+- Use `defer` to delay execution until the surrounding function returns.
+
+```go
+func process() {
+	defer fmt.Println("Finished!")
+
+	fmt.Println("Processing...")
+}
+```
+
+Output:
+
+```bash
+Processing...
+Finished!
+```
+
+## ⚙️ `init` function
+
+- We can't call this function, Computer calls this function autometically.
+- It will called at the beginning of the program execution (even before main function's called).
+
+✅ Example:
+
+```go
+package main
+import "fmt"
+
+func init() {
+	fmt.Println("init function executed")
+}
+
+func main() {
+	fmt.Println("main function executed")
+}
+```
+
+🟢 Output:
+
+```bash
+init function executed
+main function executed
+```
+
+### 🔹 Key Characteristics of `init()`
+
+| Property             | Description                                        |
+| -------------------- | -------------------------------------------------- |
+| Signature            | `func init()` — no parameters, no return value     |
+| Automatic Invocation | Called before `main()` and after global variables  |
+| Multiple `init`s     | A package can have **multiple** `init()` functions |
+| File Order           | Run in the order files are compiled                |
+| Package Order        | Dependencies' `init()` run **before** yours        |
+
+---
+
+## 📦 Higher Order Function (HOF)
+
+- A function that takes another **function as a parameter** or **returns a function** as a result or does **both** is called a higher-order function.
+
+```go
+add := func(a, b int) {
+	sum := a + b
+	println(sum)
+}
+```
+
+```go
+func processOperation(a, b int, cb func(x, y int)) func(x, y int) {
+	// Execute op func
+	cb(a, b)
+
+	return func div(x, y int) {
+	res := x / y
+	fmt.Println(res)
+	}
+}
+```
+
+```go
+func main() {
+	result := processOperation(10, 20, add)		// Executes: add(10, 20) → prints 30
+	result(20, 10)	// Executes: div(20, 10) → prints 2
+}
+```
+
+### 🎯 Why Use Higher-Order Functions?
+
+| Benefit            | Description                                        |
+| ------------------ | -------------------------------------------------- |
+| 🔄 Reusability     | Abstract repeated patterns like filtering, mapping |
+| 🎯 Customizability | Inject behavior as parameters                      |
+| ⚡ Cleaner Code    | Reduce boilerplate with functional patterns        |
+| 🔍 Composition     | Build complex logic from small reusable functions  |
+
+---
+
+## 📦Receiver Function
+
+- A receiver function is a function that binds to a type (usually a `struct`) and can be called like a method.
+- `ReceiverType` is usually a `struct`.
+- The receiver can be `value` or `pointer`.
+
+### 🧱 Basic Syntax
+
+```go
+func (receiver ReceiverType) MethodName(args) ReturnType {
+    // --- Function body
+}
+```
+
+### 🧪 Example
+
+```go
+package main
+import "fmt"
+
+type User struct {
+	Name  string // Property
+	Age   int
+	Email string
+}
+
+// Receiver Function (receive only User type's variable)
+func (user User) printDetails() {
+	fmt.Println("Name: ", user.Name)
+	fmt.Println("Age: ", user.Age)
+	fmt.Println("Email: ", user.Email)
+}
+
+func (user User) call(x int) {
+	fmt.Println("Name: ", user.Name)
+	fmt.Println("Age: ", user.Age)
+
+	fmt.Println("X: ", x)
+}
+
+func main() {
+	user := User{
+		Name:  "Ali",
+		Age:   24,
+		Email: "ali@gmail.com",
+	}
+
+	user.printDetails()
+
+	user_2 := User{
+		Name: "Ali Akkas",
+		Age:  24,
+	}
+
+	user_2.call(30)
+}
+```
+
+### 1. Compilation Phase (Compile Time) 🛠️
+
+#### 🧾Code segment (`Read-only`, contains `function definitions` and `types` )
+
+| 📍 Address | 📜 Content                                                                                                                                                            |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `0x0000`   | `type User struct {`<br>    `Name string`<br>    `Age int`<br>    `Email string`<br>`}`                                                                               |
+| `0x0100`   | `func (user User) printDetails() {`<br>    `fmt.Println("Name:", user.Name)`<br>    `fmt.Println("Age:", user.Age)`<br>    `fmt.Println("Email:", user.Email)`<br>`}` |
+| `0x0200`   | `func (user User) call(x int) {`<br>    `fmt.Println("Name:", user.Name)`<br>    `fmt.Println("Age:", user.Age)`<br>    `fmt.Println("X:", x)`<br>`}`                 |
+| `0x0300`   | `func main() { ... }`                                                                                                                                                 |
+
+### 2. Execution Phase (Run Time) 🚀
+
+#### 🧮 **Stack Frame** (grows downward, contains local variables and args)
+
+| 📍 Address | 📦 Content                                                                                                 |
+| ---------- | ---------------------------------------------------------------------------------------------------------- |
+| `0xFF00`   | `user (User struct)`<br>• Name: `"Ali"` (`0xA100`)<br>• Age: `24`<br>• Email: `"ali@gmail.com"` (`0xA200`) |
+| `0xFE00`   | `user_2 (User struct)`<br>• Name: `"Ali Akkas"` (`0xA300`)<br>• Age: `24`<br>• Email: `""` (nil)           |
+
+#### 🧊 Heap Memory (Dynamic Allocation)
+
+- 🔗 Strings in Go are reference types, stored dynamically on the heap and referenced via pointers.
+
+| 📍 Address | 🧵 Content        |
+| ---------- | ----------------- |
+| `0xA100`   | `"Ali"`           |
+| `0xA200`   | `"ali@gmail.com"` |
+| `0xA300`   | `"Ali Akkas"`     |
+
+#### 🔄 Function Call Operations
+
+| 🧪 Operation          | 🔍 Details                                                                                                                       |
+| --------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| `user.printDetails()` | • Copies `user` struct from `0xFF00` into a new stack frame.<br>• Accesses `Name` and `Email` via heap at `0xA100` and `0xA200`. |
+| `user_2.call(30)`     | • Copies `user_2` from `0xFE00` to the call frame.<br>• Argument `x=30` pushed to stack.<br>• Name resolved from `0xA300`.       |
+
+### ✅ Pointer Receiver
+
+- func (t \*Type)
+- Works on the original struct (modifiable).
+
+```go
+func (usr *User) Birthday() {
+    usr.Age++ // Modifies the original User data
+}
+
+user := User{"Akkas", 24}
+person.Birthday()
+fmt.Println(person.Age) // 25 (changed)
+```
+
+Receiver functions are Go’s way of attaching behavior to data without full-blown OOP. They enable:
+
+> ✅ Clean, object-like APIs
+> ✅ Polymorphism via interfaces
+> ✅ Explicit control over mutability
+
+### 🚫 Receiver Functions Only for Types
+
+We cannot attach a method to a built-in type like `int`. Only **custom types (structs, named types)** can have methods.
 
 ---
 
@@ -858,110 +1234,6 @@ Structs are the backbone of data organization in Go. They provide:
 
 ---
 
-## 📦Receiver Function
-
-A receiver function is a function that binds to a type (usually a struct) and can be called like a method.
-
-### 🧱 Basic Syntax
-
-```go
-func (receiver ReceiverType) MethodName(args) ReturnType {
-    // Function body
-}
-```
-
-### 🧪 Example
-
-```go
-package main
-import "fmt"
-
-type User struct {
-	Name  string // Property
-	Age   int
-	Email string
-}
-
-// Receiver Function (receive only User type's variable)
-func (user User) printDetails() {
-	fmt.Println("Name: ", user.Name)
-	fmt.Println("Age: ", user.Age)
-	fmt.Println("Email: ", user.Email)
-}
-
-func (user User) call(x int) {
-	fmt.Println("Name: ", user.Name)
-	fmt.Println("Age: ", user.Age)
-
-	fmt.Println("X: ", x)
-}
-
-func main() {
-	user := User{
-		Name:  "Ali",
-		Age:   24,
-		Email: "ali@gmail.com",
-	}
-
-	user.printDetails()
-
-	user_2 := User{
-		Name: "Ali Akkas",
-		Age:  24,
-	}
-
-	user_2.call(30)
-}
-```
-
-```go
-/*
-	2 phases:
-		1. Compilation phase (compile time)
-		2. Execution phase (run time)
-
-
-	************  Compilation Phase (compile time)  ***************
-
-		### Code Segment (readonly => (const and function)) ###
-			- User = type User struct {...}
-			- printDetails = func () {...}  // Bind with User type variable
-            - call = func (int) {...}   // // Bind with User type variable
-			- main
-
-
-	************  Execution Phase (run time)  ***************
-
-
-	go build main.go -> compile it -> main
-	./main
-*/
-
-```
-
-### ✅ Pointer Receiver
-
-- func (t \*Type)
-- Works on the original struct (modifiable).
-
-```go
-func (usr *User) Birthday() {
-    usr.Age++ // Modifies the original User data
-}
-
-user := User{"Akkas", 24}
-person.Birthday()
-fmt.Println(person.Age) // 25 (changed)
-```
-
-Receiver functions are Go’s way of attaching behavior to data without full-blown OOP. They enable:
-
-> ✅ Clean, object-like APIs
-> ✅ Polymorphism via interfaces
-> ✅ Explicit control over mutability
-
----
-
 # Array
 
 > Arrays in Go are fixed-size, homogeneous (same type) data structures that store elements in contiguous memory.
@@ -1302,46 +1574,6 @@ func main() {
 | `make([]T, len)`        | Yes               | Allocates with length          |
 | `make([]T, len, cap)`   | Yes               | Allocates with custom capacity |
 | `var s []T` (nil slice) | No                | No allocation                  |
-
----
-
-## 📦 Variadic Function in Go
-
-- A variadic function in Go is a function that accepts a **variable number of arguments** of the same type.
-- use the ... (ellipsis) syntax before the type to define it.
-- example: func funcName(arg ...type)
-
-```go
-func variadicFunc(numbers ...int) { // numbers := []int{1, 2, 3, 4, 5}
-	fmt.Println(numbers, len(numbers), cap(numbers)) // [1, 2, 3, 4, 5], len = 5, cap = 5
-}
-```
-
-```go
-func sum(nums ...int) int { // nums := []int{1, 2, 3}
-	total := 0
-	for _, num := range nums {
-		total += num
-	}
-	return total
-}
-```
-
-```go
-func main() {
-	variadicFunc(1, 2, 3, 4, 5)
-
-	summation2 := sum(1, 2, 3)      // 6
-	summation := sum(1, 2, 3, 4, 5) // 15
-}
-```
-
-## 📌 Summary of Variadic Function
-
-- When we call a variadic function, Go converts the arguments into a slice.
-- The variadic parameter is implemented as a slice under the hood.
-- The compiler generates code to automatically create this slice.
-- Calling with no variadic args creates a nil slice: **numbers := []int**
 
 ---
 
