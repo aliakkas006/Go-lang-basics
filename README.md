@@ -6,6 +6,7 @@ This repository includes clear examples and explanations for the following core 
 
 ## 📚 Index
 
+- [Operators](#-operators)
 - [Variables and Data Types](#-variables-and-data-types)
 - [Control Statements](#-control-statements)
 - [Functions](#-functions)
@@ -16,6 +17,122 @@ This repository includes clear examples and explanations for the following core 
 - [Pointer](#pointer)
 - [Slice](#slice)
 - [Map](#️-maps)
+
+---
+
+# 🧮 Operators
+
+> Operators are special symbols used to perform operations on variables and values. They are categorized as follows:
+
+## 📐 Arithmetic Operators
+
+| **Operator** | **Description**          | **Example** |
+| ------------ | ------------------------ | ----------- |
+| `+`          | Addition                 | `a + b`     |
+| `-`          | Subtraction              | `a - b`     |
+| `*`          | Multiplication           | `a * b`     |
+| `/`          | Division                 | `a / b`     |
+| `%`          | Modulus (Remainder)      | `a % b`     |
+| `++`         | Increment (Postfix only) | `a++`       |
+| `--`         | Decrement (Postfix only) | `a--`       |
+
+### ⚠️ Caution:
+
+- Go does **not** support prefix increment/decrement (`++a`, `--a`) — only **postfix** is allowed (`a++`, `a--`).
+
+---
+
+## 📊 Comparison Operators
+
+| **Operator** | **Description**          | **Example** |
+| ------------ | ------------------------ | ----------- |
+| `==`         | Equal to                 | `a == b`    |
+| `!=`         | Not equal to             | `a != b`    |
+| `>`          | Greater than             | `a > b`     |
+| `<`          | Less than                | `a < b`     |
+| `>=`         | Greater than or equal to | `a >= b`    |
+| `<=`         | Less than or equal to    | `a <= b`    |
+
+### 📝 Note:
+
+- These operators return `true` or `false` and are commonly used in conditional statements.
+
+---
+
+## 🧠 Logical Operators
+
+| **Operator** | **Description** | **Example** |
+| ------------ | --------------- | ----------- |
+| `&&`         | Logical AND     | `a && b`    |
+| `\|\|`       | Logical OR      | `a \|\| b`  |
+| `!`          | Logical NOT     | `!a`        |
+
+### 📝 Notes:
+
+- `&&` returns `true` if **both** operands are `true`.
+- `||` returns `true` if **at least one** operand is `true`.
+- `!` inverts the boolean value (i.e., `!true` is `false`).
+- Logical expressions are **short-circuited**:
+  - `a && b` stops evaluating if `a` is `false`
+  - `a || b` stops evaluating if `a` is `true`
+
+---
+
+## 🧾 Bitwise Operators
+
+| **Operator**        | **Description**     | **Example**             |
+| ------------------- | ------------------- | ----------------------- |
+| `&`                 | Bitwise AND         | `a & b`                 |
+| <code>&#124;</code> | Bitwise OR          | <code>a &#124; b</code> |
+| `^`                 | Bitwise XOR         | `a ^ b`                 |
+| `&^`                | Bit clear (AND NOT) | `a &^ b`                |
+| `<<`                | Left shift          | `a << b`                |
+| `>>`                | Right shift         | `a >> b`                |
+
+---
+
+## 📝 Assignment Operators
+
+| **Operator**         | **Description**        | **Example**              |
+| -------------------- | ---------------------- | ------------------------ |
+| `=`                  | Simple assignment      | `a = b`                  |
+| `+=`                 | Add and assign         | `a += b`                 |
+| `-=`                 | Subtract and assign    | `a -= b`                 |
+| `*=`                 | Multiply and assign    | `a *= b`                 |
+| `/=`                 | Divide and assign      | `a /= b`                 |
+| `%=`                 | Modulus and assign     | `a %= b`                 |
+| `&=`                 | Bitwise AND and assign | `a &= b`                 |
+| <code>&#124;=</code> | Bitwise OR and assign  | <code>a &#124;= b</code> |
+| `^=`                 | Bitwise XOR and assign | `a ^= b`                 |
+| `<<=`                | Left shift and assign  | `a <<= b`                |
+| `>>=`                | Right shift and assign | `a >>= b`                |
+
+---
+
+## 🎯 Address & Pointer Operators
+
+| **Operator** | **Description**     | **Example** |
+| ------------ | ------------------- | ----------- |
+| `&`          | Address of          | `&a`        |
+| `*`          | Pointer dereference | `*ptr`      |
+
+### 📝 Notes:
+
+- `&a` returns the memory address of variable `a`.
+- `*ptr` accesses the value stored at the memory address held by `ptr`.
+
+---
+
+## 📡 Channel Operators
+
+| **Operator** | **Description**             | **Example**           |
+| ------------ | --------------------------- | --------------------- |
+| `<-`         | Send/Receive from a channel | `ch <- x`, `x = <-ch` |
+
+### 📝 Notes:
+
+- `ch <- x` sends the value `x` into the channel `ch`.
+- `x = <-ch` receives a value from the channel `ch` and stores it in `x`.
 
 ---
 

@@ -16,6 +16,7 @@ import "fmt"
 */
 
 func main() {
+
 	// 1. array to slice
 	// slice := arr[start(inclusive):end(exclusive)], len = end - start, cap = total_arr_len - start
 	arr := [5]int{1, 2, 3, 4, 5}
@@ -61,6 +62,13 @@ func main() {
 
 	appendSlice()
 	appendSlice2()
+
+	// Check the edge cases of slices
+	slice := make([]int, 1024, 1024)
+	slice = append(slice, 10)
+
+	fmt.Println("length: ", len(slice))   // len = 1025
+	fmt.Println("capacity: ", cap(slice)) // cap = 1536
 }
 
 /*
