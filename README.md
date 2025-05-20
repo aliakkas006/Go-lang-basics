@@ -1,4 +1,4 @@
-# 📘Go Lang Basics
+# 🛰️ Go In-depth Tour
 
 Welcome to the **Go Basics Repository** – a concise and practical guide for learning the foundational concepts of the Go programming language.
 
@@ -6,6 +6,7 @@ This repository includes clear examples and explanations for the following core 
 
 ## 📚 Index
 
+- [Keywords](#-keywords-in-go)
 - [Operators](#-operators)
 - [Variables and Data Types](#-variables-and-data-types)
 - [Control Statements](#-control-statements)
@@ -17,6 +18,107 @@ This repository includes clear examples and explanations for the following core 
 - [Pointer](#pointer)
 - [Slice](#slice)
 - [Map](#️-maps)
+
+---
+
+# 🔑 Keywords in Go
+
+> In Go, keywords are reserved words that have special meaning in the language. we can't use them as variable names or identifiers. Go has just **25 keywords** that form the building blocks of the language.
+
+## 🔧 Declaration Keywords
+
+| Keyword   | Purpose                           |
+| --------- | --------------------------------- |
+| `var`     | Declares variables                |
+| `const`   | Declares constants                |
+| `type`    | Declares a new type               |
+| `func`    | Declares a function               |
+| `package` | Declares the current package name |
+| `import`  | Imports packages                  |
+
+---
+
+## 🔁 Control Flow Keywords
+
+| Keyword       | Purpose                                  |
+| ------------- | ---------------------------------------- |
+| `if`          | Starts a conditional block               |
+| `else`        | Specifies an alternative block           |
+| `switch`      | Multiple conditional branches            |
+| `case`        | A branch within `switch`                 |
+| `default`     | Default branch in `switch`               |
+| `for`         | Starts a loop                            |
+| `range`       | Iterates over arrays, slices, maps, etc. |
+| `goto`        | Jumps to a label                         |
+| `fallthrough` | Falls through to next case in switch     |
+| `continue`    | Skips current loop iteration             |
+| `break`       | Exits loop or switch                     |
+| `return`      | Exits from a function                    |
+| `defer`       | Delays execution until function ends     |
+
+---
+
+## 💾 Memory & Concurrency
+
+| Keyword  | Purpose                       |
+| -------- | ----------------------------- |
+| `chan`   | Declares a channel            |
+| `go`     | Starts a goroutine            |
+| `select` | Waits on multiple channel ops |
+
+---
+
+## ⚙️ Miscellaneous
+
+| Keyword     | Purpose                    |
+| ----------- | -------------------------- |
+| `interface` | Declares an interface type |
+| `struct`    | Declares a structure type  |
+| `map`       | Declares a map type        |
+
+---
+
+## ⚡Complete Keyword List
+
+| Keyword    | Keyword       | Keyword  | Keyword     | Keyword  |
+| ---------- | ------------- | -------- | ----------- | -------- |
+| `break`    | `default`     | `func`   | `interface` | `select` |
+| `case`     | `defer`       | `go`     | `map`       | `struct` |
+| `chan`     | `else`        | `goto`   | `package`   | `switch` |
+| `const`    | `fallthrough` | `if`     | `range`     | `type`   |
+| `continue` | `for`         | `import` | `return`    | `var`    |
+
+#### ❗ Notes:
+
+- Go also reserves some **predeclared identifiers** like `int`, `string`, `true`, `false`, `nil`, etc., which aren't keywords but are important.
+- Go has no classes, try-catch, or while—this keeps the language simple.
+- **Case-sensitive**: all keywords must be lowercase.
+
+---
+
+## ⚙️ Go Built-in Functions
+
+- These identifiers — `append`, `cap`, `close`, `complex`, `copy`, `delete`, `imag`, `len`, `make`, `new`, `panic`, `print`, `println`, `real`, `recover` — are **predeclared built-in functions** in Go.
+- They are **not keywords**, but they're treated specially by the compiler.
+- These functions are part of Go's **runtime** and are always available without importing any package.
+
+| Function  | Purpose                                                            |
+| --------- | ------------------------------------------------------------------ |
+| `append`  | Adds elements to the end of a slice and returns the updated slice  |
+| `cap`     | Returns the capacity of a slice, array, or channel                 |
+| `close`   | Closes a channel                                                   |
+| `complex` | Creates a complex number from two float values                     |
+| `copy`    | Copies elements from a source slice to a destination slice         |
+| `delete`  | Deletes a key-value pair from a map                                |
+| `imag`    | Returns the imaginary part of a complex number                     |
+| `len`     | Returns the length of strings, arrays, slices, maps, or channels   |
+| `make`    | Allocates and initializes slices, maps, or channels                |
+| `new`     | Allocates memory for a variable and returns a pointer to it        |
+| `panic`   | Stops the normal execution of a program (used for critical errors) |
+| `print`   | Prints values to the standard output (less commonly used)          |
+| `println` | Like `print`, but adds spaces and a newline                        |
+| `real`    | Returns the real part of a complex number                          |
+| `recover` | Regains control of a panicking goroutine (used with `defer`)       |
 
 ---
 
