@@ -6,18 +6,83 @@ This repository includes clear examples and explanations for the following core 
 
 ## 📚 Index
 
-- [Keywords](#-keywords-in-go)
-- [Operators](#-operators)
-- [Variables and Data Types](#-variables-and-data-types)
-- [Control Statements](#-control-statements)
-- [Functions](#-functions)
-- [Scope](#-scope)
-- [Closure](#closure)
-- [Struct](#struct)
-- [Array](#array)
-- [Pointer](#pointer)
-- [Slice](#slice)
-- [Map](#️-maps)
+- [Keywords 🔑](#-keywords-in-go)
+  - [Declaration Keywords](#-declaration-keywords)
+  - [Control Flow Keywords](#-control-flow-keywords)
+  - [Memory & Concurrency Keywords](#-memory--concurrency-keywords)
+  - [Miscellaneous Keywords](#️-miscellaneous-keywords)
+  - [Complete Keyword List](#complete-keyword-list)
+  - [Go Built-in Functions](#️-go-built-in-functions)
+- [Operators 🧮](#-operators)
+  - [Arithmetic Operators](#-arithmetic-operators)
+  - [Comparison Operators](#-comparison-operators)
+  - [Logical Operators](#-logical-operators)
+  - [Bitwise Operators](#-bitwise-operators)
+  - [Assignment Operators](#-assignment-operators)
+  - [Address & Pointer Operators](#-address--pointer-operators)
+  - [Channel Operators](#-channel-operators)
+- [Variables and Data Types 📦](#-variables-and-data-types)
+  - [Declaring Variables](#-declaring-variables)
+  - [Data Types](#-data-types)
+    - [Basic Types](#-basic-types)
+    - [Composite Types](#️-composite-types)
+    - [Constants](#-constants)
+  - [Type Conversion](#-type-conversion)
+- [Control Statements 🔁](#-control-statements)
+  - [Conditional Statements](#1️⃣-conditional-statements)
+  - [Switch Statement](#2️⃣-switch-statement)
+  - [Loop Control Statements](#3️⃣-loop-control-statements)
+  - [Control Flow Statements](#4️⃣-control-flow-statements)
+  - [`defer` Statement](#-defer-statement)
+- [Functions 🔧](#-functions)
+  - [Function Syntax](#-function-syntax)
+  - [Function with Multiple Return Values](#-function-with-multiple-return-values)
+  - [Named Return Values](#-named-return-values)
+  - [Recursive Functions](#-recursive-functions)
+  - [Anonymous Functions](#-anonymous-functions)
+  - [IIFE](#-iife--immediately-invoked-function-expression)
+  - [Closures](#-closures)
+  - [`defer` with Functions](#-defer-with-functions)
+  - [`init` function](#️-init-function)
+  - [Variadic Function](#-variadic-function)
+  - [Higher Order Function (HOF)](#-higher-order-function-hof)
+  - [Receiver Function](#receiver-function)
+- [Scope 🧭](#-scope)
+  - [Block Scope](#1️⃣-block-scope)
+  - [Function Scope](#2️⃣-function-scope)
+  - [Package Scope](#3️⃣-package-scope)
+  - [File Scope](#4️⃣-file-scope)
+  - [Variable Shadowing](#-variable-shadowing)
+  - [Lexical Scope](#-lexical-scope)
+  - [Demonstrating All Scopes](#-demonstrating-all-scopes)
+- [Closure 🧠](#-closure)
+  - [Basic Example with Memory Management](#-basic-example)
+  - [Encapsulation](#-encapsulation-private-variables)
+- [Struct 🧱](#struct)
+  - [Basic Syntax](#-basic-syntax-1)
+  - [Creating Struct instances](#️-creating-struct-instances)
+  - [Accessing Struct Fields](#-accessing-struct-fields)
+  - [Nested Structs](#-nested-structs)
+  - [Anonymous Structs](#-anonymous-structs)
+  - [Comparing Structs](#-comparing-structs)
+- [Array 🔢](#array)
+  - [Basic Syntax](#-basic-syntax-2)
+  - [Array Declaration & Initialization](#-array-declaration--initialization)
+  - [Working with Arrays](#-working-with-arrays)
+- [Pointer 🎯](#pointer)
+  - [Pointer Terminology](#-pointer-terminology)
+  - [Pointer Syntax](#pointer-syntax)
+  - [Pointer Mechanics](#-pointer-mechanics)
+- [Slice 🧩](#slice)
+  - [Slice Structure](#️-slice-structure)
+  - [Creating Slices](#️-creating-slices)
+  - [Appending to Slices](#-appending-to-slices)
+  - [Summary of Slice Creation](#-summary-of-slice-creation)
+- [Map 🗺️](#️-maps)
+  - [Map Syntax](#-map-syntax)
+  - [Declaring Maps](#️-declaring-maps)
+  - [Working with Map](#-working-with-map)
+  - [Practical Example](#-practical-example-word-frequency-counter)
 
 ---
 
@@ -58,7 +123,7 @@ This repository includes clear examples and explanations for the following core 
 
 ---
 
-## 💾 Memory & Concurrency
+## 💾 Memory & Concurrency Keywords
 
 | Keyword  | Purpose                       |
 | -------- | ----------------------------- |
@@ -68,7 +133,7 @@ This repository includes clear examples and explanations for the following core 
 
 ---
 
-## ⚙️ Miscellaneous
+## ⚙️ Miscellaneous Keywords
 
 | Keyword     | Purpose                    |
 | ----------- | -------------------------- |
@@ -242,7 +307,7 @@ This repository includes clear examples and explanations for the following core 
 
 Go is a statically typed, compiled language with a rich set of built-in data types and flexible variable declaration syntax.
 
-## 📘 Declaring Variables in Go
+## 📘 Declaring Variables
 
 - ### Explicit Declaration with `var` keyword
 
@@ -285,7 +350,7 @@ x, y := 10, 20
 
 ---
 
-## 🧬 Data Types in Go
+## 🧬 Data Types
 
 > Go is statically typed — each variable must have a defined type (either explicitly or inferred).
 
@@ -312,7 +377,16 @@ x, y := 10, 20
 | `channel`   | Communication between goroutines   | `ch := make(chan int)`                        |
 | `function`  | First-class functions              | `func add(a, b int) int { return a + b }`     |
 
-### 🧪 Type Conversion
+### 🧠 Constants
+
+- Use `const` to declare immutable values
+
+```go
+const Pi = 3.1415
+const Lang = "Go"
+```
+
+## 🧪 Type Conversion
 
 - Go is **strictly typed** — implicit conversion is not allowed.
 - Use explicit conversion with the type name.
@@ -326,15 +400,6 @@ var u uint = uint(f)
 str := "hello"
 bytes := []byte(str)
 newStr := string(bytes)
-```
-
-### 🧠 Constants
-
-- Use `const` to declare immutable values
-
-```go
-const Pi = 3.1415
-const Lang = "Go"
 ```
 
 ---
@@ -618,7 +683,7 @@ func greet(name string) {
 }
 ```
 
-## 🧠 Summary Table
+### 🧠 Summary Table
 
 | Statement  | Description                                     |
 | ---------- | ----------------------------------------------- |
@@ -628,7 +693,7 @@ func greet(name string) {
 | `return`   | Exits the current function                      |
 | Label      | Named target for `goto`, `break`, or `continue` |
 
-## `defer` Statement
+## ⚡ `defer` Statement
 
 ```go
 func readFile() {
@@ -656,7 +721,7 @@ func readFile() {
 - A parameter is a variable named in the function definition.
 - An argument is the actual value that is passed to the function when it is called.
 
-## 🧱 Basic Function Syntax
+## 🧱 Function Syntax
 
 ```go
 func functionName(param1 type1, param2 type2) returnType {
@@ -695,56 +760,6 @@ func getStats(nums []int) (sum int, count int) {
 	return 		// Automatically returns named values - (sum, count)
 }
 ```
-
-## 📦 Variadic Function
-
-- A variadic function is a function that accepts a **variable number of arguments** of the same data type.
-- use the ... (ellipsis) syntax before the type to define it.
-
-🧱 Basic Syntax:
-
-```go
-func funcName(params ...type) {
-	// --- function body
-	return
-}
-```
-
-✅ Example:
-
-```go
-func variadicFunc(numbers ...int) { // numbers := []int{1, 2, 3, 4, 5}
-	fmt.Println(numbers, len(numbers), cap(numbers)) // [1, 2, 3, 4, 5], len = 5, cap = 5
-}
-```
-
-```go
-func sum(nums ...int) int { // nums := []int{1, 2, 3}
-	total := 0
-	for _, num := range nums {
-		total += num
-	}
-	return total
-}
-```
-
-```go
-func main() {
-	variadicFunc(1, 2, 3, 4, 5)
-
-	summation := sum(1, 2, 3)      // 6
-	summation2 := sum(1, 2, 3, 4, 5) // 15
-}
-```
-
-## 📌 Summary of Variadic Function
-
-- When we call a variadic function, Go converts the **arguments into a slice**.
-- The variadic parameter is **implemented as a slice under the hood**.
-- The compiler generates code to automatically create this slice.
-- Calling with no variadic args creates a nil slice: **numbers := []int**
-
----
 
 ## 🔁 Recursive Functions
 
@@ -804,7 +819,7 @@ next()	// 1
 next()  // 2
 ```
 
-## 🧼 Defer with Functions
+## 🧼 `defer` with Functions
 
 - Use `defer` to delay execution until the surrounding function returns.
 
@@ -859,6 +874,56 @@ main function executed
 | Multiple `init`s     | A package can have **multiple** `init()` functions |
 | File Order           | Run in the order files are compiled                |
 | Package Order        | Dependencies' `init()` run **before** yours        |
+
+---
+
+## 📦 Variadic Function
+
+- A variadic function is a function that accepts a **variable number of arguments** of the same data type.
+- use the ... (ellipsis) syntax before the type to define it.
+
+🧱 Basic Syntax:
+
+```go
+func funcName(params ...type) {
+	// --- function body
+	return
+}
+```
+
+✅ Example:
+
+```go
+func variadicFunc(numbers ...int) { // numbers := []int{1, 2, 3, 4, 5}
+	fmt.Println(numbers, len(numbers), cap(numbers)) // [1, 2, 3, 4, 5], len = 5, cap = 5
+}
+```
+
+```go
+func sum(nums ...int) int { // nums := []int{1, 2, 3}
+	total := 0
+	for _, num := range nums {
+		total += num
+	}
+	return total
+}
+```
+
+```go
+func main() {
+	variadicFunc(1, 2, 3, 4, 5)
+
+	summation := sum(1, 2, 3)      // 6
+	summation2 := sum(1, 2, 3, 4, 5) // 15
+}
+```
+
+### 📌 Summary of Variadic Function
+
+- When we call a variadic function, Go converts the **arguments into a slice**.
+- The variadic parameter is **implemented as a slice under the hood**.
+- The compiler generates code to automatically create this slice.
+- Calling with no variadic args creates a nil slice: **numbers := []int**
 
 ---
 
@@ -1056,6 +1121,8 @@ func main() {
 }
 ```
 
+---
+
 ## 2️⃣ Function Scope
 
 - Variables declared inside functions are visible only within that function.
@@ -1075,6 +1142,8 @@ func main() {
 ```
 
 > ⚠️ These variables are re-created every time the function is called.
+
+---
 
 ## 3️⃣ Package Scope
 
@@ -1103,6 +1172,8 @@ func main() {
 > ✅ Package-scoped variables **persist for the lifetime** of the program.
 > ⚠️ Can lead to **race conditions** in concurrent code.
 
+---
+
 ## 4️⃣ File Scope
 
 - Imported packages are file-scoped.
@@ -1122,6 +1193,8 @@ func main() {
 }
 ```
 
+---
+
 ## 🔄 Variable Shadowing
 
 - When an **inner scope variable** declares **same name** as **outer scope variable**.
@@ -1137,7 +1210,44 @@ fmt.Println(x) 	// Outer-scope variable
 
 > ⚠️ Shadowing can cause bugs — avoid reusing variable names in nested scopes unless intentional.
 
-## 🧪 Example: Demonstrating All Scopes
+---
+
+## 🧱 Lexical Scope
+
+> Lexical scope (also called static scope) is a fundamental concept in Go that determines how and where variables, functions, and other identifiers are accessible based on their physical location in the source code. Unlike dynamic scope (which determines visibility at runtime), lexical scope is determined at compile time.
+
+```go
+func outerFunc() func() int {
+    count := 0 		// Lexically-scoped to outerFunc
+
+    return func() int {
+        count++ 		// The inner function "closes over" count
+        return count
+    }
+}
+
+func main() {
+    counter := outerFunc()
+    fmt.Println(counter()) 		// 1
+    fmt.Println(counter()) 		// 2 (count persists)
+}
+```
+
+- The inner function maintains a reference to count (not a copy).
+- This is possible because Go uses **lexical scoping**.
+
+### 📊 Lexical vs Dynamic Scope Comparison
+
+| Feature           | Lexical Scope (Go)      | Dynamic Scope (e.g., Bash) |
+| ----------------- | ----------------------- | -------------------------- |
+| 🔍 Resolution     | At compile time         | At runtime                 |
+| 🧭 Access Rules   | Based on code structure | Based on call stack        |
+| ⚡ Performance    | Faster (resolved early) | Slower (runtime lookup)    |
+| ✅ Predictability | More predictable        | Less predictable           |
+
+---
+
+## 🧪 Demonstrating All Scopes
 
 ```go
 package main
@@ -1167,42 +1277,9 @@ func main() {
 }
 ```
 
-## 🧱 Lexical Scope
-
-> Lexical scope (also called static scope) is a fundamental concept in Go that determines how and where variables, functions, and other identifiers are accessible based on their physical location in the source code. Unlike dynamic scope (which determines visibility at runtime), lexical scope is determined at compile time.
-
-```go
-func outerFunc() func() int {
-    count := 0 		// Lexically-scoped to outerFunc
-
-    return func() int {
-        count++ 		// The inner function "closes over" count
-        return count
-    }
-}
-
-func main() {
-    counter := outerFunc()
-    fmt.Println(counter()) 		// 1
-    fmt.Println(counter()) 		// 2 (count persists)
-}
-```
-
-- The inner function maintains a reference to count (not a copy).
-- This is possible because Go uses **lexical scoping**.
-
-## 📊 Lexical vs Dynamic Scope Comparison
-
-| Feature           | Lexical Scope (Go)      | Dynamic Scope (e.g., Bash) |
-| ----------------- | ----------------------- | -------------------------- |
-| 🔍 Resolution     | At compile time         | At runtime                 |
-| 🧭 Access Rules   | Based on code structure | Based on call stack        |
-| ⚡ Performance    | Faster (resolved early) | Slower (runtime lookup)    |
-| ✅ Predictability | More predictable        | Less predictable           |
-
 ---
 
-# Closure
+# 🧠 Closure
 
 Closures are a powerful concept in Go that allow functions to **remember** and **access variables** from their surrounding lexical scope, even after the outer function has finished executing. They are often used for:
 
@@ -1211,7 +1288,7 @@ Closures are a powerful concept in Go that allow functions to **remember** and *
 - **Callbacks** (event handlers, async operations)
 - **Stateful functions** (maintaining state between calls)
 
-### ✅ Basic Example:
+## ✅ Basic Example:
 
 Closures in Go are **anonymous functions** that capture variables from their surrounding scope. They are useful when we want a function with persistent state.
 
@@ -1255,41 +1332,86 @@ func init(){
 }
 ```
 
-```
-/*
-	2 phases:
-		1. Compilation phase (compile time)
-		2. Execution phase (run time)
+### 1. Compilation Phase (Compile Time) 🛠️
 
+#### 🧾Code segment (`Read-only`, contains `function definitions` and `types` )
 
-	************  Compilation Phase (compile time)  ***************
-
-		### Code Segment (readonly => (const and function)) ###
-
-			- a
-			- outer = func() {...}
-			- outerAnonymous_1 = func() {...}
-			- call = func() {...}
-			- main = func() {...}
-			- init = func() {...}
-
-
-	************  Execution Phase (run time)  ***************
-			### Data Segment (var)
-				- p
-
-
-	* go build main.go -> compile it -> main
-	./main (run)
-*/
-```
+| 📜 Address | 📜 Content                                      |
+| ---------- | ----------------------------------------------- |
+| `0x0000`   | `const a = 10`                                  |
+| `0x0100`   | `func outer()` with local variables and closure |
+|            | - `money := 500`                                |
+|            | - `age := 24`                                   |
+|            | - `show := func() { ... }`                      |
+|            | - `return show`                                 |
+| `0x0200`   | Anonymous closure inside `outer()`              |
+|            | - `money = money + a + p`                       |
+|            | - `fmt.Println("Money:", money)`                |
+| `0x0300`   | `func call() { ... }`                           |
+| `0x0400`   | `func main() { call() }`                        |
+| `0x0500`   | `func init()`                                   |
+|            | - `fmt.Println("==== Bank ====")`               |
 
 - Variables captured by a closure are lifted to the **heap** by the escape analysis of the go compiler.
 - **Escape analysis** is a process performed by the Go compiler to determine whether a variable can be allocated on the stack or must be allocated on the heap
 
+### 2. Execution Phase (Run Time) 🚀
+
+- The `init()` function runs **before** `main()`
+- Prints: ==== Bank ====
+
+<!-- #### 🧮 **Stack Frame** (grows downward, contains local variables and args) -->
+
+- Global variable `p` is initialized in the **Data Segment**.
+
+#### 🧩 Data Segment
+
+| Address  | Content   |
+| -------- | --------- |
+| `0xD000` | `p = 100` |
+
+#### 🧠 First `call()` Execution
+
+#### ➤ First `outer()` Call (creates `incr_1`)
+
+- A new **stack frame** is created.
+- Local variables are placed on the **stack**.
+
+#### 🧮 Stack (outer call 1)
+
+| Address  | Content                                       |
+| -------- | --------------------------------------------- |
+| `0xF100` | `money = 500`                                 |
+| `0xF108` | `age = 24`                                    |
+| `0xF110` | `show (closure)` → points to code at `0x0200` |
+
+#### 📦 Heap Allocation (Closure Capture)
+
+Closure captures `money` and **escapes** the stack, hence moved to the **heap**.
+
+| Address  | Content                                        |
+| -------- | ---------------------------------------------- |
+| `0xH100` | Closure environment (refers to `money@0xF100`) |
+
+#### 🔁 First `incr_1()` Execution
+
+- Reads `money` from closure (heap): `500`
+- Reads `a` (constant) from code segment: `10`
+- Reads `p` (global var) from data segment: `100`
+
+**New Value**: `500 + 10 + 100 = 610`
+
+📍 Heap after update: 0xH100.money = 610
+
+#### 🔁 Second `incr_1()` Execution
+
+**New Value**: `610 + 10 + 100 = 720`
+
+📍 Heap: 0xH100.money = 720
+
 ---
 
-### 🔒 Encapsulation (private variables)
+## 🔒 Encapsulation (private variables)
 
 ```go
 func newBankAccount(initialBalance float64) (func(float64), func() float64) {
@@ -1313,16 +1435,19 @@ func main() {
 }
 ```
 
-- balance is hidden from outside access.
+- `balance` moves from stack to heap because it's referenced after `newBankAccount` returns.
+- Both closures share the same `balance` reference.
+- The `balance` variable is effectively private, only accessible through the returned functions.
+- `balance` is hidden from outside access.
 
 ---
 
-# Struct
+# 🧱 Struct
 
 > Structs are one of the most important features in Go for organizing and managing data.
 > A struct is a **composite data type** that groups together fields (variables) under a single name.
 
-### 🧱 Basic syntax
+## 🧩 Basic Syntax
 
 ```go
 type StructName struct {
@@ -1441,8 +1566,6 @@ p2 := Person{"Akkas", 24, "Bangladesh"}
 fmt.Println(p1 == p2) // true
 ```
 
----
-
 ### 💡Final Thoughts
 
 Structs are the backbone of data organization in Go. They provide:
@@ -1453,12 +1576,12 @@ Structs are the backbone of data organization in Go. They provide:
 
 ---
 
-# Array
+# 🔢 Array
 
 > Arrays in Go are fixed-size, homogeneous (same type) data structures that store elements in contiguous memory.
 > Unlike slices, arrays have a static length that cannot be changed after creation.
 
-## 🔢 Basic Syntax
+## 📏 Basic Syntax
 
 ```go
 var arrayName [length]Type
@@ -1540,7 +1663,7 @@ fmt.Println(matrix[1][2])  // 6
 
 ---
 
-# Pointer
+# 🎯 Pointer
 
 Pointers are a fundamental concept in Go that allow us to **directly manipulate memory addresses**.
 They are essential for:
@@ -1614,14 +1737,14 @@ type Node struct {
 }
 ```
 
-# Slice
+# 🧩 Slice
 
 > Slices are one of the most powerful and commonly used data structures in Go 🧠  
 > Learn how slices work under the hood, how to use them effectively, and what to avoid.
 
 ---
 
-## 🧩 What is a Slice?
+## ✂️ Slice Structure
 
 A slice is a **dynamic, flexible view** into an array. Unlike arrays, slices can:
 
@@ -1639,7 +1762,7 @@ type slice struct {
 }
 ```
 
-## 🔬 Slice Internal Fields
+### 🔬 Slice Internal Fields
 
 - **`ptr`**: Points to the start of the underlying array segment.
 - **`len`**: Number of elements the slice currently holds.
@@ -1804,7 +1927,7 @@ A **map** is an **unordered collection** of **key-value pairs** where:
 - Values are accessed via keys
 - Keys must be comparable (`==` operator)
 
-## ✅ Basic Syntax
+## ✅ Map Syntax
 
 ```go
 map[KeyType]ValueType
