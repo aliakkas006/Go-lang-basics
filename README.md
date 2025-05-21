@@ -1,6 +1,6 @@
-# 🛰️ Go In-depth Tour
+# 🚀 Go In-depth Tour 🧭
 
-Welcome to the **Go Basics Repository** – a concise and practical guide for learning the foundational concepts of the Go programming language.
+Welcome to the **Go In-Depth Tour** — your one-stop repository for mastering the **Go programming language** from the ground up to advanced concepts. Whether you're a beginner exploring Go's syntax or an experienced developer diving into **low-level memory management** and **closures**, this repo is crafted to help you learn **practically**, **visually**, and **thoroughly**.
 
 This repository includes clear examples and explanations for the following core Go concepts:
 
@@ -24,9 +24,6 @@ This repository includes clear examples and explanations for the following core 
 - [Variables and Data Types 📦](#-variables-and-data-types)
   - [Declaring Variables](#-declaring-variables)
   - [Data Types](#-data-types)
-    - [Basic Types](#-basic-types)
-    - [Composite Types](#️-composite-types)
-    - [Constants](#-constants)
   - [Type Conversion](#-type-conversion)
 - [Control Statements 🔁](#-control-statements)
   - [Conditional Statements](#1️⃣-conditional-statements)
