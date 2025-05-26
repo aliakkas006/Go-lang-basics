@@ -80,6 +80,7 @@ This repository includes clear examples and explanations for the following core 
   - [Declaring Maps](#️-declaring-maps)
   - [Working with Map](#-working-with-map)
   - [Practical Example](#-practical-example-word-frequency-counter)
+- [Contributions](#-contributions)
 
 ---
 
@@ -2068,3 +2069,25 @@ func wordCount(str string) map[string]int {
 - Keys must be of a type that supports `==` comparison (e.g., string, int).
 - Maps are **reference types** (passed by reference)
 - Not safe for concurrent use (use `sync.Map` for concurrency)
+
+---
+
+# 🤝 Contributions
+
+Contributions are welcome! Whether you're fixing bugs, improving documentation, or adding new Go examples — your help is appreciated.
+
+### How to Contribute
+
+1. 🍴 Fork the repository
+2. 📥 Clone your forked repo
+3. 🛠 Create a new branch (`git checkout -b feature-name`)
+4. 💻 Make your changes
+5. ✅ Commit your changes (`git commit -m "Add new Go example"`)
+6. 🔄 Push to the branch (`git push origin feature-name`)
+7. 📝 Create a Pull Request
+
+Make sure your code follows Go best practices and is properly documented. All PRs are reviewed before merging.
+
+---
+
+⭐ **Star** this repo if you found it helpful — it motivates future improvements!
