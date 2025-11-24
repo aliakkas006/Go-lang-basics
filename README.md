@@ -4,83 +4,85 @@ Welcome to the **Go In-Depth Tour** — your one-stop repository for mastering t
 
 This repository includes clear examples and explanations for the following core Go concepts:
 
+<div id="top"></div>
+
 ## 📚 Index
 
-- [Keywords 🔑](#-keywords-in-go)
-  - [Declaration Keywords](#-declaration-keywords)
-  - [Control Flow Keywords](#-control-flow-keywords)
-  - [Memory & Concurrency Keywords](#-memory--concurrency-keywords)
-  - [Miscellaneous Keywords](#️-miscellaneous-keywords)
+- [Keywords 🔑](#keywords-in-go)
+  - [Declaration Keywords](#declaration-keywords)
+  - [Control Flow Keywords](#control-flow-keywords)
+  - [Memory & Concurrency Keywords](#memory--concurrency-keywords)
+  - [Miscellaneous Keywords](#️miscellaneous-keywords)
   - [Complete Keyword List](#complete-keyword-list)
-  - [Go Built-in Functions](#️-go-built-in-functions)
-- [Operators 🧮](#-operators)
-  - [Arithmetic Operators](#-arithmetic-operators)
-  - [Comparison Operators](#-comparison-operators)
-  - [Logical Operators](#-logical-operators)
-  - [Bitwise Operators](#-bitwise-operators)
-  - [Assignment Operators](#-assignment-operators)
-  - [Address & Pointer Operators](#-address--pointer-operators)
-  - [Channel Operators](#-channel-operators)
-- [Variables and Data Types 📦](#-variables-and-data-types)
-  - [Declaring Variables](#-declaring-variables)
-  - [Data Types](#-data-types)
-  - [Type Conversion](#-type-conversion)
-- [Control Statements 🔁](#-control-statements)
-  - [Conditional Statements](#1️⃣-conditional-statements)
-  - [Switch Statement](#2️⃣-switch-statement)
-  - [Loop Control Statements](#3️⃣-loop-control-statements)
-  - [Control Flow Statements](#4️⃣-control-flow-statements)
-  - [`defer` Statement](#-defer-statement)
-- [Functions 🔧](#-functions)
-  - [Function Syntax](#-function-syntax)
-  - [Function with Multiple Return Values](#-function-with-multiple-return-values)
-  - [Named Return Values](#-named-return-values)
-  - [Recursive Functions](#-recursive-functions)
-  - [Anonymous Functions](#-anonymous-functions)
-  - [IIFE](#-iife--immediately-invoked-function-expression)
-  - [Closures](#-closures)
-  - [`defer` with Functions](#-defer-with-functions)
-  - [`init` function](#️-init-function)
-  - [Variadic Function](#-variadic-function)
-  - [Higher Order Function (HOF)](#-higher-order-function-hof)
+  - [Go Built-in Functions](#️go-built-in-functions)
+- [Operators 🧮](#operators)
+  - [Arithmetic Operators](#arithmetic-operators)
+  - [Comparison Operators](#comparison-operators)
+  - [Logical Operators](#logical-operators)
+  - [Bitwise Operators](#bitwise-operators)
+  - [Assignment Operators](#assignment-operators)
+  - [Address & Pointer Operators](#address--pointer-operators)
+  - [Channel Operators](#channel-operators)
+- [Variables and Data Types 📦](#variables-and-data-types)
+  - [Declaring Variables](#declaring-variables)
+  - [Data Types](#data-types)
+  - [Type Conversion](#type-conversion)
+- [Control Statements 🔁](#control-statements)
+  - [Conditional Statements](#conditional-statements)
+  - [Switch Statement](#switch-statement)
+  - [Loop Control Statements](#loop-control-statements)
+  - [Control Flow Statements](#control-flow-statements)
+  - [`defer` Statement](#defer-statement)
+- [Functions 🔧](#functions)
+  - [Function Syntax](#function-syntax)
+  - [Function with Multiple Return Values](#function-with-multiple-return-values)
+  - [Named Return Values](#named-return-values)
+  - [Recursive Functions](#recursive-functions)
+  - [Anonymous Functions](#anonymous-functions)
+  - [IIFE](#iife--immediately-invoked-function-expression)
+  - [Closures](#closures)
+  - [`defer` with Functions](#defer-with-functions)
+  - [`init` function](#️init-function)
+  - [Variadic Function](#variadic-function)
+  - [Higher Order Function (HOF)](#higher-order-function-hof)
   - [Receiver Function](#receiver-function)
-- [Scope 🧭](#-scope)
-  - [Block Scope](#1️⃣-block-scope)
-  - [Function Scope](#2️⃣-function-scope)
-  - [Package Scope](#3️⃣-package-scope)
-  - [File Scope](#4️⃣-file-scope)
-  - [Variable Shadowing](#-variable-shadowing)
-  - [Lexical Scope](#-lexical-scope)
-  - [Demonstrating All Scopes](#-demonstrating-all-scopes)
-- [Closure 🧠](#-closure)
-  - [Basic Example with Memory Management](#-basic-example)
-  - [Encapsulation](#-encapsulation-private-variables)
-- [Struct 🧱](#-struct)
-  - [Basic Syntax](#-basic-syntax-1)
-  - [Creating Struct instances](#️-creating-struct-instances)
-  - [Accessing Struct Fields](#-accessing-struct-fields)
-  - [Nested Structs](#-nested-structs)
-  - [Anonymous Structs](#-anonymous-structs)
-  - [Comparing Structs](#-comparing-structs)
-- [Array 🔢](#-array)
-  - [Basic Syntax](#-basic-syntax-2)
-  - [Array Declaration & Initialization](#-array-declaration--initialization)
-  - [Working with Arrays](#-working-with-arrays)
-- [Pointer 🎯](#-pointer)
-  - [Pointer Terminology](#-pointer-terminology)
+- [Scope 🧭](#scope)
+  - [Block Scope](#block-scope)
+  - [Function Scope](#function-scope)
+  - [Package Scope](#package-scope)
+  - [File Scope](#file-scope)
+  - [Variable Shadowing](#variable-shadowing)
+  - [Lexical Scope](#lexical-scope)
+  - [Demonstrating All Scopes](#demonstrating-all-scopes)
+- [Closure 🧠](#closure)
+  - [Basic Example with Memory Management](#basic-example)
+  - [Encapsulation](#encapsulation-private-variables)
+- [Struct 🧱](#struct)
+  - [Basic Syntax](#basic-syntax-1)
+  - [Creating Struct instances](#️creating-struct-instances)
+  - [Accessing Struct Fields](#accessing-struct-fields)
+  - [Nested Structs](#nested-structs)
+  - [Anonymous Structs](#anonymous-structs)
+  - [Comparing Structs](#comparing-structs)
+- [Array 🔢](#array)
+  - [Basic Syntax](#basic-syntax-2)
+  - [Array Declaration & Initialization](#array-declaration--initialization)
+  - [Working with Arrays](#working-with-arrays)
+- [Pointer 🎯](#pointer)
+  - [Pointer Terminology](#pointer-terminology)
   - [Pointer Syntax](#pointer-syntax)
-  - [Pointer Mechanics](#-pointer-mechanics)
-- [Slice 🧩](#-slice)
-  - [Slice Structure](#️-slice-structure)
-  - [Creating Slices](#️-creating-slices)
-  - [Appending to Slices](#-appending-to-slices)
-  - [Summary of Slice Creation](#-summary-of-slice-creation)
-- [Map 🗺️](#️-maps)
-  - [Map Syntax](#-map-syntax)
-  - [Declaring Maps](#️-declaring-maps)
-  - [Working with Map](#-working-with-map)
-  - [Practical Example](#-practical-example-word-frequency-counter)
-- [Contributions](#-contributions)
+  - [Pointer Mechanics](#pointer-mechanics)
+- [Slice 🧩](#slice)
+  - [Slice Structure](#️slice-structure)
+  - [Creating Slices](#️creating-slices)
+  - [Appending to Slices](#appending-to-slices)
+  - [Summary of Slice Creation](#summary-of-slice-creation)
+- [Map 🗺️](#️maps)
+  - [Map Syntax](#map-syntax)
+  - [Declaring Maps](#️declaring-maps)
+  - [Working with Map](#working-with-map)
+  - [Practical Example](#practical-example-word-frequency-counter)
+- [Contributions](#contributions)
 
 ---
 
@@ -182,6 +184,8 @@ This repository includes clear examples and explanations for the following core 
 | `println` | Like `print`, but adds spaces and a newline                        |
 | `real`    | Returns the real part of a complex number                          |
 | `recover` | Regains control of a panicking goroutine (used with `defer`)       |
+
+[⬆️ Back to top](#top)
 
 ---
 
@@ -299,6 +303,8 @@ This repository includes clear examples and explanations for the following core 
 - `ch <- x` sends the value `x` into the channel `ch`.
 - `x = <-ch` receives a value from the channel `ch` and stores it in `x`.
 
+[⬆️ Back to top](#top)
+
 ---
 
 # Variables and Data Types
@@ -399,6 +405,8 @@ str := "hello"
 bytes := []byte(str)
 newStr := string(bytes)
 ```
+
+[⬆️ Back to top](#top)
 
 ---
 
@@ -711,9 +719,11 @@ func readFile() {
 - Arguments are evaluated immediately
 - Useful for resource cleanup
 
+[⬆️ Back to top](#top)
+
 ---
 
-# 🔧 Functions
+# Functions
 
 - A function is a reusable block of code that performs a specific task.
 - A parameter is a variable named in the function definition.
@@ -856,7 +866,7 @@ func main() {
 }
 ```
 
-🟢 Output:
+Output:
 
 ```bash
 init function executed
@@ -888,6 +898,7 @@ func funcName(params ...type) {
 	return
 }
 ```
+
 Example:
 
 ```go
@@ -956,8 +967,8 @@ func main() {
 
 ### Why Use Higher-Order Functions?
 
-| Benefit            | Description                                        |
-| ------------------ | -------------------------------------------------- |
+| Benefit         | Description                                        |
+| --------------- | -------------------------------------------------- |
 | Reusability     | Abstract repeated patterns like filtering, mapping |
 | Customizability | Inject behavior as parameters                      |
 | Cleaner Code    | Reduce boilerplate with functional patterns        |
@@ -1023,7 +1034,7 @@ func main() {
 }
 ```
 
-### 1. Compilation Phase (Compile Time) 🛠️
+### 1. Compilation Phase (Compile Time)
 
 #### Code segment (`Read-only`, contains `function definitions` and `types` )
 
@@ -1034,7 +1045,7 @@ func main() {
 | `0x0200`   | `func (user User) call(x int) {`<br>    `fmt.Println("Name:", user.Name)`<br>    `fmt.Println("Age:", user.Age)`<br>    `fmt.Println("X:", x)`<br>`}`                 |
 | `0x0300`   | `func main() { ... }`                                                                                                                                                 |
 
-### 2. Execution Phase (Run Time) 🚀
+### 2. Execution Phase (Run Time)
 
 #### **Stack Frame** (grows downward, contains local variables and args)
 
@@ -1084,6 +1095,8 @@ Receiver functions are Go’s way of attaching behavior to data without full-blo
 ### 🚫 Receiver Functions Only for Types
 
 We cannot attach a method to a built-in type like `int`. Only **custom types (structs, named types)** can have methods.
+
+[⬆️ Back to top](#top)
 
 ---
 
@@ -1235,8 +1248,8 @@ func main() {
 
 ### Lexical vs Dynamic Scope Comparison
 
-| Feature           | Lexical Scope (Go)      | Dynamic Scope (e.g., Bash) |
-| ----------------- | ----------------------- | -------------------------- |
+| Feature        | Lexical Scope (Go)      | Dynamic Scope (e.g., Bash) |
+| -------------- | ----------------------- | -------------------------- |
 | Resolution     | At compile time         | At runtime                 |
 | Access Rules   | Based on code structure | Based on call stack        |
 | Performance    | Faster (resolved early) | Slower (runtime lookup)    |
@@ -1273,6 +1286,8 @@ func main() {
 	fmt.Println(val)
 }
 ```
+
+[⬆️ Back to top](#top)
 
 ---
 
@@ -1352,7 +1367,7 @@ func init(){
 - Variables captured by a closure are lifted to the **heap** by the escape analysis of the go compiler.
 - **Escape analysis** is a process performed by the Go compiler to determine whether a variable can be allocated on the stack or must be allocated on the heap
 
-### 2. Execution Phase (Run Time) 
+### 2. Execution Phase (Run Time)
 
 - The `init()` function runs **before** `main()`
 - Prints: ==== Bank ====
@@ -1398,13 +1413,13 @@ Closure captures `money` and **escapes** the stack, hence moved to the **heap**.
 
 **New Value**: `500 + 10 + 100 = 610`
 
- Heap after update: 0xH100.money = 610
+Heap after update: 0xH100.money = 610
 
 #### Second `incr_1()` Execution
 
 **New Value**: `610 + 10 + 100 = 720`
 
- Heap: 0xH100.money = 720
+Heap: 0xH100.money = 720
 
 ---
 
@@ -1436,6 +1451,8 @@ func main() {
 - Both closures share the same `balance` reference.
 - The `balance` variable is effectively private, only accessible through the returned functions.
 - `balance` is hidden from outside access.
+
+[⬆️ Back to top](#top)
 
 ---
 
@@ -1571,6 +1588,8 @@ Structs are the backbone of data organization in Go. They provide:
 - **Flexibility** (composition over inheritance)
 - **Clean code** (group related data)
 
+[⬆️ Back to top](#top)
+
 ---
 
 # Array
@@ -1658,6 +1677,8 @@ fmt.Println(matrix[1][2])  // 6
 }
 ```
 
+[⬆️ Back to top](#top)
+
 ---
 
 # Pointer
@@ -1733,6 +1754,10 @@ type Node struct {
 	Next *Node	// Pointer to the next node
 }
 ```
+
+[⬆️ Back to top](#top)
+
+---
 
 # Slice
 
@@ -1816,7 +1841,7 @@ s[3] = 20               // runtime error: index out of range [3] with length 3
 - First form: len = cap
 - Second form: custom capacity
 
-###  Nil Slice
+### Nil Slice
 
 ```go
 var s []int  // [], ptr = nil, len = 0, cap = 0
@@ -1913,6 +1938,8 @@ func main() {
 | `make([]T, len)`        | Yes               | Allocates with length          |
 | `make([]T, len, cap)`   | Yes               | Allocates with custom capacity |
 | `var s []T` (nil slice) | No                | No allocation                  |
+
+[⬆️ Back to top](#top)
 
 ---
 
@@ -2069,6 +2096,8 @@ func wordCount(str string) map[string]int {
 - Maps are **reference types** (passed by reference)
 - Not safe for concurrent use (use `sync.Map` for concurrency)
 
+[⬆️ Back to top](#top)
+
 ---
 
 # Contributions
@@ -2090,3 +2119,5 @@ Make sure your code follows Go best practices and is properly documented. All PR
 ---
 
 ⭐ **Star** this repo if you found it helpful — it motivates future improvements!
+
+[⬆️ Back to top](#top)
